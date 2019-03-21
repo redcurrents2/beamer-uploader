@@ -1,0 +1,20 @@
+<h1>Beamer uploader</h1>
+<div>
+    <p>Where do you want to upload your beamers to?</p>
+    <form action="/upload">
+    <div>
+    {{ range .destinations }}
+        <input type="radio" name="destination" value="{{ . }}">{{ . }}</input>
+    {{ end }}
+    </div>
+    <div>
+    {{ range .uploadTypes }}
+        <input type="radio" name="type" value="{{ . }}">{{ . }}</input>
+    {{ end }}
+    </div>
+    <div>
+        <input type="file"></input>
+        <input type="submit" value="Submit">
+    </div>
+    </form>
+</div>
