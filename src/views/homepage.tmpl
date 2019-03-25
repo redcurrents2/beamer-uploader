@@ -1,15 +1,20 @@
 <h1>Beamer uploader</h1>
 <div>
     <p>Where do you want to upload your beamers to?</p>
-    <form action="/upload">
+    <form action="/upload" method="POST">
     <div>
-    {{ range .destinations }}
-        <input type="radio" name="destination" value="{{ . }}">{{ . }}</input>
-    {{ end }}
+        {{ range $key, $value := .destinations }}
+        <div>
+            <input type="radio" name="env" value="{{ $key }}" onClick="setDest({{ $value }})">{{ $key }}</input><br>
+        </div>
+        {{ end }}
+        <div>
+            <input id="destination" type="text" name="destination" value=""></input>
+        </div>
     </div>
     <div>
     {{ range .uploadTypes }}
-        <input type="radio" name="type" value="{{ . }}">{{ . }}</input>
+        <input type="radio" name="uploadType" value="{{ . }}">{{ . }}</input>
     {{ end }}
     </div>
     <div>
@@ -18,3 +23,9 @@
     </div>
     </form>
 </div>
+
+<script>
+    function setDest(e) {
+        document.getElementById('destination').value = e;
+    }
+</script>
